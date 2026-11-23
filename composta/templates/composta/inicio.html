@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Compostaje</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-dark bg-success mb-4">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1">🌱 Composta en Casa</span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="p-5 mb-4 bg-white rounded-3 shadow-sm">
+            <h1 class="display-5 fw-bold text-success">Transforma tus residuos en vida</h1>
+            <p class="col-md-8 fs-4">Aprende a equilibrar materiales verdes y marrones para crear abono orgánico de alta calidad.</p>
+        </div>
+
+        <h2 class="mb-3">¿Qué puedes compostar?</h2>
+        <div class="row g-4 mb-5">
+            <div class="col-md-4">
+                <div class="card border-success h-100">
+                    <div class="card-header bg-success text-white">Verdes (Nitrógeno)</div>
+                    <ul class="list-group list-group-flush">
+                        {% for item in verdes %}
+                            <li class="list-group-item"><strong>{{ item.nombre }}</strong>: {{ item.descripcion }}</li>
+                        {% empty %}
+                            <li class="list-group-item text-muted">Agrega elementos desde el panel admin.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card border-warning h-100">
+                    <div class="card-header bg-warning text-dark">Marrones (Carbono)</div>
+                    <ul class="list-group list-group-flush">
+                        {% for item in marrones %}
+                            <li class="list-group-item"><strong>{{ item.nombre }}</strong>: {{ item.descripcion }}</li>
+                        {% empty %}
+                            <li class="list-group-item text-muted">Agrega elementos desde el panel admin.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card border-danger h-100">
+                    <div class="card-header bg-danger text-white">Prohibidos</div>
+                    <ul class="list-group list-group-flush">
+                        {% for item in prohibidos %}
+                            <li class="list-group-item"><strong>{{ item.nombre }}</strong>: {{ item.descripcion }}</li>
+                        {% empty %}
+                            <li class="list-group-item text-muted">Agrega elementos desde el panel admin.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="mb-3">Guías y Consejos</h2>
+        <div class="row">
+            {% for guia in guias %}
+                <div class="col-12 mb-3">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title text-success">{{ guia.titulo }}</h5>
+                            <p class="card-text">{{ guia.contenido|linebreaks }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="text-muted">Aún no hay guías publicadas.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>
